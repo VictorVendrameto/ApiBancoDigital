@@ -14,7 +14,14 @@ class ContaController extends Controller
 
             $model = new ContaModel();
             $model->id = $json_obj->Id;
+            $model->numero = $json_obj->Numero;
             $model->tipo = $json_obj->Tipo;
+            $model->saldo = $json_obj->Saldo;
+            $model->limite = $json_obj->Limite;
+            $model->senha = $json_obj->Senha;
+            $model->data_abertura = $json_obj->Data_abertura;
+            $model->id_correntista = $json_obj->Id_correntista;
+
 
             $model->save();
         }

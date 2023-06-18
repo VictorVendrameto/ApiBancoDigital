@@ -6,35 +6,26 @@ use ApiBancoDigital\DAO\ContaDAO;
 
 class ContaModel extends Model
 {
-    public $id, $tipo, $chave, $id_conta;
+    public $id, $numero, $tipo, $saldo, $limite, $senha, 
+        $data_abertura, $id_correntista
 
     public function save()
     {
-        $dao = new ContaDAO();
         if($this->id == null)
-            $dao->insert($this);
-        else
-            $dao->update($this);
+        {
+           (new ContaDAO())->insert($this);
+        }
     }
 
-    public function getAllRows()
+    public function getAllRows(string $query = null)
     {
         $dao = new ContaDAO();
 
-        $this->rows = $dao->select();
+        $this->rows = ($query == null) ? $dao->select() : $dao->search($query);
     }
 
-    public function delete(int $id)
+    public function delete()
     {
-        $dao = new ContaDAO();
-        
-        $this->delete($id);
-    }
-
-    public function getById(int $id)
-    {
-        $dao = new ContaDAO();
-
-        $this->rows = $dao->selectById($id);
+        (new ContaDAO())->delete($this->id);
     }
 }
