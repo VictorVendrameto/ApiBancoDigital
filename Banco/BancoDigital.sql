@@ -59,7 +59,3 @@ CREATE TABLE conta_transacao_assoc
     FOREIGN KEY (id_conta) REFERENCES conta (id),
     FOREIGN KEY (id_transacao) REFERENCES transacao (id)
 );
-
-INSERT INTO correntista (nome, email, data_nasc, cpf, senha, data_cadastro) VALUES ("hugo", "hugo@gmail.com", "2005-09-20", "12345678910", sha1("123"), "2023-11-22");
-
-INSERT INTO conta (numero, saldo, limite, tipo, senha, data_abertura, id_correntista) VALUES ("987654321", "1250.98", "5000", "Corrente", "7355608", "2023-05-15", 1);
