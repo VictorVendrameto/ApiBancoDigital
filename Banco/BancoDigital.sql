@@ -6,11 +6,11 @@ CREATE TABLE correntista
 (
 	id INT AUTO_INCREMENT,
     nome VARCHAR(150),
-    email VARCHAR(100),
-    data_nasc DATE,
     cpf CHAR(11),
+    data_nasc DATE,
+    email VARCHAR(100),
     senha VARCHAR(100),
-    data_cadastro DATE,
+    data_cad DATE,
     PRIMARY KEY (id)
 );
 

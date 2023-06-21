@@ -6,7 +6,7 @@ use ApiBancoDigital\DAO\CorrentistaDAO;
 
 class CorrentistaModel extends Model
 {
-    public $id, $tipo, $chave, $id_conta;
+    public $id, $nome, $cpf, $data_nasc, $email, $senha, $data_cad
 
     public function save()
     {
