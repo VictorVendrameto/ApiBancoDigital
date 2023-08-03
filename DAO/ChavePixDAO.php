@@ -34,6 +34,7 @@ class ChavePixDAO extends DAO
     public function update()
     {
 
+        
     }
 
     public function insert()
