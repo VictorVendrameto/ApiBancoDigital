@@ -1,7 +1,7 @@
 <?php
 
 namespace ApiBancoDigital\DAO;
-use ApiBancoDigital\Model\ContaModel;
+use ApiBancoDigital\Model\CorrentistaModel;
 use \PDO;
 
 class CorrentistaDAO extends DAO
@@ -37,21 +37,22 @@ class CorrentistaDAO extends DAO
     {
 
     }
-    public function insert(CorrentistaModel $m) : bool
+    public function insert(CorrentistaModel $model)
     {
         $sql = "INSERT INTO correntista (nome, cpf, data_nasc, email, senha, 
             data_cad) VALUES (?, ?, ?, ?, sha1(?), ?)";
 
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1, $m->nome);
-        $stmt->bindValue(2, $m->cpf);
-        $stmt->bindValue(3, $m->data_nasc);
-        $stmt->bindValue(4, $m->email);
-        $stmt->bindValue(5, $m->senha);
-        $stmt->bindValue(6, $m->data_cad);
+        $stmt->bindValue(1, $model->nome);
+        $stmt->bindValue(2, $model->cpf);
+        $stmt->bindValue(3, $model->data_nasc);
+        $stmt->bindValue(4, $model->email);
+        $stmt->bindValue(5, $model->senha);
+        $stmt->bindValue(6, $model->data_cad);
 
         $stmt->execute();
-        return $this->conexao->lastInsertId();
+        $model->id = $this->conexao->lastInsertId();
+        return $model;
     }
 
     public function delete(int $id) : bool

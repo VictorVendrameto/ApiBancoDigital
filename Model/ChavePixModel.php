@@ -7,9 +7,9 @@ use ApiBancoDigital\DAO\ChavePixDAO;
 
 class ChavePixModel extends Model
 {
-    public $id, $tipo, $chave, $id_conta;
+    public $id, $id_conta, $chave, $id_conta;
 
-    public function save()
+    public function save() : ?ChavePixModel
     {
         $dao = new ChavePixDAO();
         if($this->id == null)
