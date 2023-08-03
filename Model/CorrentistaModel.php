@@ -38,8 +38,8 @@ class CorrentistaModel extends Model
 
             $model_preenchido->rows_contas[] = $conta_poupanca;
         }
-    return $model_preenchido;
-
+        return $model_preenchido;
+    }
     public function getByCpfAndSenha($cpf, $senha) : CorrentistaModel
     {
         return (new CorrentistaDAO())->selectByCpfSenha($cpf, $senha);
