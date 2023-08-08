@@ -1,5 +1,7 @@
 <?php
 namespace ApiBancoDigital\Controller;
+use ApiBancoDigital\Model\ChavePixModel;
+use Exception;
 
 class ChavePixController extends Controller
 {
