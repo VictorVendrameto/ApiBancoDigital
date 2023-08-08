@@ -11,6 +11,11 @@ class CorrentistaDAO extends DAO
         parent::__construct();
     }
 
+    public function save(CorrentistaModel $m) : CorrentistaModel
+    {
+        return ($m->id == null) ? $this->insert($m) : $this->update($m);
+    }
+
     public function select() : array
     {
         $sql = "SELECT * FROM correntista";
@@ -21,7 +26,7 @@ class CorrentistaDAO extends DAO
         return $stmt->fetchAll(DAO::FETCH_CLASS, "ApiBancoDigital\Model\CorrentistaModel");
     }
 
-    public function selectByCpfSenha(CorrentistaModel $model)
+    public function selectByCpfAndSenha(CorrentistaModel $model)
     {
         $sql = "SELECT * FROM correntista WHERE cpf = ? AND senha = ?";
 

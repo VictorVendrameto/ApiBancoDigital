@@ -5,6 +5,7 @@ namespace ApiBancoDigital\Model;
 use ApiBancoDigital\DAO\CorrentistaDAO;
 use ApiBancoDigital\DAO\ContaDAO;
 
+
 class CorrentistaModel extends Model
 {
     public $id, $nome, $cpf, $data_nasc, $email, $senha, $data_cad;
@@ -18,8 +19,9 @@ class CorrentistaModel extends Model
 
         if($model_preenchido->id != null)
         {
+            $dao_conta = new ContaDAO();
             //Conta corrente
-            $dao_conta = new ContaModel();
+            $conta_corrente = new ContaModel();
             $conta_corrente->id_correntista = $model_preenchido->id;
             $conta_corrente->saldo = 0;
             $conta_corrente->limite = 100;
@@ -42,7 +44,7 @@ class CorrentistaModel extends Model
     }
     public function getByCpfAndSenha($cpf, $senha) : CorrentistaModel
     {
-        return (new CorrentistaDAO())->selectByCpfSenha($cpf, $senha);
+        return (new CorrentistaDAO())->selectByCpfAndSenha($cpf, $senha);
     }
 
     public function getAllRows()
@@ -58,11 +60,10 @@ class CorrentistaModel extends Model
 
         $dao->delete($id);
     }
-
-    public function getById($id)
+    public function AuthenticCorrentista()
     {
         $dao = new CorrentistaDAO();
 
-        $this->rows = $dao->selectById($id);
+        return $dao->selectByCpfAndSenha($this);
     }
 }

@@ -11,19 +11,14 @@ class ContaDAO extends DAO
         parent::__construct();
     }
 
-    public function select() : array
+    public function select()
     {
         $sql = "SELECT * FROM conta";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
 
-        return $stmt->fetchAll(DAO::FETCH_CLASS, "ApiBancoDigital\Model\ContaModel");
-    }
-
-    public function selectById()
-    {
-
+        return $stmt->fetchAll(DAO::FETCH_CLASS);
     }
 
     public function update(ContaModel $m) : bool
@@ -70,29 +65,14 @@ class ContaDAO extends DAO
 
         return $stmt->execute();
     }
-
-    public function search(string $query) : array
+    
+    public function selectContasById(int $id)
     {
-        $str_query = ['filtro' => '%' . $query . '%'];
-
-        $sql = "SELECT * FROM conta WHERE numero LIKE :filtro ";
+        $sql = "SELECT * FROM conta WHERE id = ?";   
 
         $stmt = $this->conexao->prepare($sql);
-
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->execute($str_query);
-
-        return $stmt->fetchAll(DAO::FETCH_CLASS, "ApiBancoDigital\Model\ContaModel");
-    }
-
-    public function selectByNumero($numero)
-    {
-        $sql = "SELECT * FROM conta WHERE numero=?";
-
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1, $numero);
         $stmt->execute();
 
-        return $stmt->fetchObject("ApiBancoDigital\Model\ContaModel");
+        return $stmt->fetchAll(DAO::FETCH_CLASS);
     }
 }
