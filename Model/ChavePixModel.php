@@ -11,31 +11,16 @@ class ChavePixModel extends Model
 
     public function save() : ?ChavePixModel
     {
-        $dao = new ChavePixDAO();
-        if($this->id == null)
-            $dao->insert($this);
-        else
-            $dao->update($this);
+        return (new ChavePixDAO())->save($this);
     }
 
-    public function getAllRows()
+    public function getAllRows(int $id_correntista) : array
     {
-        $dao = new ChavePixDAO();
-
-        $this->rows = $dao->select();
+        return (new ChavePixDAO())->select($this);
     }
 
-    public function delete($id)
+    public function remove() : bool
     {
-        $dao = new ChavePixDAO();
-
-        $dao->delete($id);
-    }
-
-    public function getById($id)
-    {
-        $dao = new ChavePixDAO();
-
-        $this->rows = $dao->selectById($id);
+        return (new ChavePixDAO())->delete($this);
     }
 }
