@@ -46,24 +46,4 @@ class CorrentistaModel extends Model
     {
         return (new CorrentistaDAO())->selectByCpfAndSenha($cpf, $senha);
     }
-
-    public function getAllRows()
-    {
-        $dao = new CorrentistaDAO();
-
-        $this->rows = $dao->select();
-    }
-
-    public function delete($id)
-    {
-        $dao = new CorrentistaDAO();
-
-        $dao->delete($id);
-    }
-    public function AuthenticCorrentista()
-    {
-        $dao = new CorrentistaDAO();
-
-        return $dao->selectByCpfAndSenha($this);
-    }
 }
