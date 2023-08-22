@@ -17,20 +17,13 @@ class TransacaoModel extends Model
             $dao->update($this);
     }
 
-    public function getAllRows()
+    public function getAllRows(int $id_conta)
     {
         $dao = new TransacaoDAO();
 
-        $this->rows = $dao->select();
+        $this->rows = $dao->select($id_conta);
     }
-
-    public function delete($id)
-    {
-        $dao = new TransacaoDAO();
-
-        $dao->delete($id);
-    }
-
+    
     public function getById($id)
     {
         $dao = new TransacaoDAO();
